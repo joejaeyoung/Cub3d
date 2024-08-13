@@ -26,7 +26,10 @@ void	one_quadrants(t_cub3d *cub3d, int angle)
 			tmp_x += 0.01;
 			tmp_y += -0.01 * slope;
 		}
-		//printf("tmp_x : %d. tmp_y : %d slope : %lf\n", tmp_x, tmp_y, slope);
+		if (((int)tmp_y % cub3d->map.tile_len == 0 || 
+			(int)round(tmp_x) % cub3d->map.tile_len == 0) && 
+			is_wall(cub3d, tmp_x, tmp_y))
+			break;
 	}
 }
 
@@ -56,7 +59,10 @@ void	two_quadrants(t_cub3d *cub3d, int angle)
 			tmp_x -= 0.01;
 			tmp_y += 0.01 * slope;
 		}
-		//printf("tmp_x : %d. tmp_y : %d slope : %lf\n", tmp_x, tmp_y, slope);
+		if (((int)tmp_y % cub3d->map.tile_len == 0 || 
+			(int)round(tmp_x) % cub3d->map.tile_len == 0) && 
+			is_wall(cub3d, tmp_x, tmp_y))
+			break;
 	}
 }
 
@@ -86,7 +92,10 @@ void	three_quadrants(t_cub3d *cub3d, int angle)
 			tmp_x -= 0.01;
 			tmp_y += 0.01 * slope;
 		}
-		//printf("tmp_x : %d. tmp_y : %d slope : %lf\n", tmp_x, tmp_y, slope);
+		if (((int)tmp_y % cub3d->map.tile_len == 0 || 
+			(int)round(tmp_x) % cub3d->map.tile_len == 0) && 
+			is_wall(cub3d, tmp_x, tmp_y))
+			break;
 	}
 }
 
@@ -116,7 +125,10 @@ void	four_quadrants(t_cub3d *cub3d, int angle)
 			tmp_x += 0.01;
 			tmp_y -= 0.01 * slope;
 		}
-		//printf("tmp_x : %d. tmp_y : %d slope : %lf\n", tmp_x, tmp_y, slope);
+		if (((int)tmp_y % cub3d->map.tile_len == 0 || 
+			(int)round(tmp_x) % cub3d->map.tile_len == 0) && 
+			is_wall(cub3d, tmp_x, tmp_y))
+			break;
 	}
 }
 
@@ -142,5 +154,7 @@ void	slope_verti_hori(t_cub3d *cub3d, int angle)
 			tmp_x -= 1;
 		if (angle == 0 || angle == 360)
 			tmp_x += 1;
+		if ((int)tmp_y % cub3d->map.tile_len == 0 && is_wall(cub3d, tmp_x, tmp_y))
+			break;
 	}
 }

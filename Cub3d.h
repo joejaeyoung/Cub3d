@@ -97,6 +97,7 @@ void	print_array_map(t_cub3d *cub3d);
 
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);
+int		is_wall(t_cub3d *cub3d, double x, double y);
 
 /* ray_utils.c */
 int		get_angle(t_direction d);
