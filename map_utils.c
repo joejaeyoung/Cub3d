@@ -34,3 +34,23 @@ void make_field_rectangle(t_cub3d *cub3d)
 		field = field->next;
 	}
 }
+
+void	make_field_array(t_cub3d *cub3d)
+{
+	t_field	*tmp;
+	int		height;
+	int		width;
+	int		max_width;
+
+	max_width = cub3d->map.max_width;
+	cub3d->map.array_map = (int **)malloc(sizeof(int *) * cub3d->map.map_height);
+	tmp = cub3d->map.field;
+	height = -1;
+	while(++height < cub3d->map.map_height) {
+		width = -1;
+		cub3d->map.array_map[height] = (int *)malloc(sizeof(int) * max_width);
+		while(++width < max_width)
+			cub3d->map.array_map[height][width] = tmp->line[width].value;
+		tmp = tmp -> next;
+	}
+}

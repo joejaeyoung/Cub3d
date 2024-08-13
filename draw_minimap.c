@@ -32,7 +32,7 @@ void	draw_player(t_cub3d *cub3d)
 	}
 }
 
-void	draw_minimap(t_cub3d *cub3d)
+int	draw_minimap(t_cub3d *cub3d)
 {
 	int	count_h;
 	int	count_w;
@@ -65,4 +65,5 @@ void	draw_minimap(t_cub3d *cub3d)
 	}
 
 	draw_ray(cub3d);
+	return (0);
 }

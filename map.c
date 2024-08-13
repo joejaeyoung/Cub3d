@@ -30,5 +30,6 @@ void	parse_map(t_cub3d *cub3d, char *filename)
 	}
 	save_max_line_num(cub3d);
 	make_field_rectangle(cub3d);
+	make_field_array(cub3d);
 }
 

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Key.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
+/*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/07/29 16:45:17 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/13 01:57:41 by joojeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEY_H
 # define KEY_H
 
-# define UP			'w'
-# define DOWN		's'
-# define RIGHT		'd'
-# define LEFT		'a'
+# define UP			13
+# define DOWN		1
+# define RIGHT		2
+# define LEFT		0
 # define ESC		0xFF1B
 # define ZOOM_IN	'['
 # define ZOOM_OUT	']'

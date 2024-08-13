@@ -20,3 +20,13 @@ void	print_field(t_field *field)
 		i++;
 	}
 }
+
+void	print_array_map(t_cub3d *cub3d)
+{
+	for(int i = 0; i < cub3d->map.map_height; i++) {
+		for(int j = 0; j < cub3d->map.max_width; j++) {
+			printf("%d ", cub3d->map.array_map[i][j]);
+		}
+		printf("\n");
+	}
+}

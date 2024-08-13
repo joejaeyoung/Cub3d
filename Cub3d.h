@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
+/*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/07/31 11:39:59 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/13 01:38:36 by joojeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # define RAY_RANGE (PI / 3.0)
 # define RAY_COUNT 121
 
-# include "./minilibx-linux/mlx.h"
+// # include "./minilibx-linux/mlx.h"
+# include "./minilibx_opengl_20191021/mlx.h"
 # include "libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
@@ -67,6 +68,7 @@ typedef struct s_map {
 	t_field		*field;
 	t_point		*start;
 	t_point		*end;
+	int			**array_map;
 	int			max_width;
 	int			map_height;
 	int			zoom;
@@ -91,6 +93,7 @@ typedef struct s_cub3d {
 
 /* tmp.c */
 void	print_field(t_field *field);
+void	print_array_map(t_cub3d *cub3d);
 
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);
@@ -112,7 +115,7 @@ void	slope_verti_hori(t_cub3d *cub3d, int angle);
 void	make_it_3d(t_cub3d *cub3d);
 
 /* draw_minimap.c */
-void	draw_minimap(t_cub3d *cub3d);
+int	draw_minimap(t_cub3d *cub3d);
 
 /* draw_utils.c */
 void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color);
@@ -138,6 +141,7 @@ void	parse_map(t_cub3d *cub3d, char *filename);
 /* map_utils.c */
 void	save_max_line_num(t_cub3d *cub3d);
 void	make_field_rectangle(t_cub3d *cub3d);
+void	make_field_array(t_cub3d *cub3d);
 
 /* map_color.c */
 int		parse_map_color(t_cub3d *cub3d, char *str);

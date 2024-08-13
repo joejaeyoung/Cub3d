@@ -30,3 +30,4 @@ void	draw_ray(t_cub3d *cub3d)
 		angle += 5;
 	}
 }
+

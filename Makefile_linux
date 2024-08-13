@@ -12,11 +12,10 @@ DONE = 0
 BAR_FILLED = 0
 BAR_EMPTY = 60
 
-CC := gcc
+CC := cc
 CFLAGS := -g
-# LINUX : LIBXFLAGS = -L minilibx-linux -lmlx -lXext -lX11 -lm
-LIBXFLAGS = -L./minilibx_opengl_20191021 -lmlx -lm #-framework OpenGL -framework -lm #AppKit
-HPATH = -I 
+LIBXFLAGS = -L minilibx-linux -lmlx -lXext -lX11 -lm
+HPATH = -I minilibx-linux
 RM := rm -f
 
 # MANDATORY PART
@@ -30,10 +29,11 @@ LIBFT := $(LIBFT_DIR)/libft.a
 MAP = map.c map_utils.c map_color.c map_texture.c
 TMP = tmp.c
 VALIDATION = validation.c validation_field.c validation_field_utils.c
-DRAW = draw_map.c draw_minimap.c ray.c ray_quad.c ray_utils.c draw_utils.c
+DRAW = draw_map.c draw_minimap.c draw_utils.c
 KEY = key_hook.c key_move.c
+RAY = ray.c ray_utils.c ray_quad.c
 
-SRCS := error.c main.c free.c $(MAP) $(KEY) $(VALIDATION) $(TMP) $(DRAW)
+SRCS := error.c main.c free.c $(MAP) $(KEY) $(VALIDATION) $(TMP) $(DRAW) $(RAY)
 OBJS := $(SRCS:.c=.o)
 
 .PHONY : all start clean fclean re
@@ -45,13 +45,13 @@ $(NAME) :
 	@echo
 	@echo
 	@make start --no-print-directory
-	@$(CC) $(CFLAGS) $(LIBXFLAGS) $(OBJS) $(LIBFT) minilibx_opengl_20191021/libmlx.a -iquote $(INC_DIR) -o $(NAME) -framework OpenGL -framework AppKit
+	@$(CC) $(CFLAGS) $(LIBXFLAGS) $(OBJS) $(LIBFT) minilibx-linux/libmlx.a -iquote $(INC_DIR) -o $(NAME)
 	@echo "  Completed! "
 	
 start : $(OBJS)
 
 %.o : $(SRC_DIR)/%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I minilibx-linux -c $< -o $@
 	@$(eval DONE := $(shell echo $$(($(DONE) + 1))))
 	@$(eval PROGRESS := $(shell echo $$(($(DONE) * 100 / $(COUNT)))))
 	@RED=$$(($(RED_START) + $(PROGRESS) * ($(RED_END) - $(RED_START)) / 100)); \
