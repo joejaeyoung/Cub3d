@@ -1,24 +1,24 @@
 #include "Cub3d.h"
 #include "Key.h"
 
-int	is_wall(t_cub3d *cub3d, double x, double y)
-{
-	int		tile_len;
-	t_field	*field;
+// int	is_wall(t_cub3d *cub3d, double x, double y)
+// {
+// 	int		tile_len;
+// 	t_field	*field;
 
-	tile_len = cub3d->map.tile_len;
-	if ((int)round(x) % tile_len == 0 || (int)round(y) % tile_len == 0)
-	{
-		field = ft_lstfind_node(cub3d->map.field, (int)y / tile_len);
-		printf("y : %d, x : %d, v : %d\n", field->line[(int)x / tile_len].height, field->line[(int)x / tile_len].width, field->line[(int)x / tile_len].value);
-		if (field->line[(int)x / tile_len].value == 1)
-		{
-			printf("벽이다!\n");
-			return (SUCCESS);
-		}
-	}
-	return (FAIL);
-}
+// 	tile_len = cub3d->map.tile_len;
+// 	if ((int)round(x) % tile_len == 0 || (int)round(y) % tile_len == 0)
+// 	{
+// 		field = ft_lstfind_node(cub3d->map.field, (int)y / tile_len);
+// 		printf("y : %d, x : %d, v : %d\n", field->line[(int)x / tile_len].height, field->line[(int)x / tile_len].width, field->line[(int)x / tile_len].value);
+// 		if (field->line[(int)x / tile_len].value == 1)
+// 		{
+// 			printf("벽이다!\n");
+// 			return (SUCCESS);
+// 		}
+// 	}
+// 	return (FAIL);
+// }
 
 void	move_up(t_cub3d *cub3d)
 {

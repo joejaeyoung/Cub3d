@@ -1,5 +1,25 @@
 #include "Cub3d.h"
 
+int		is_wall(t_cub3d *cub3d, double x, double y)
+{
+	int	len;
+	int	tmp_y;
+	int	tmp_x;
+	int	tmp_x2;
+
+	tmp_y = round(y);
+	tmp_x = (int)(x);
+	tmp_x2 = (int)(x) + 1;
+	len = cub3d->map.tile_len;
+	// if (cub3d->map.array_map[tmp_y / len - 1][tmp_x / len] == 1 || 
+	// 	cub3d->map.array_map[tmp_y / len - 1][(tmp_x + 1) / len] == 1 ||
+	// 	cub3d->map.array_map[tmp_y / len][tmp_x / len] == 1)
+	// 	return (1);
+	if (cub3d->map.array_map[tmp_y / len - 1][tmp_x / len] == 1)
+		return (1);
+	return (0);
+}
+
 void	draw_one_ray(t_cub3d *cub3d, int angle)
 {
 	if (angle % 90 == 0)
