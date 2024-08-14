@@ -15,8 +15,14 @@ int		is_wall(t_cub3d *cub3d, double x, double y)
 	// 	cub3d->map.array_map[tmp_y / len - 1][(tmp_x + 1) / len] == 1 ||
 	// 	cub3d->map.array_map[tmp_y / len][tmp_x / len] == 1)
 	// 	return (1);
-	if (cub3d->map.array_map[tmp_y / len - 1][tmp_x / len] == 1)
+	if (cub3d->map.array_map[tmp_y / len][tmp_x / len] == 1 || 
+		(cub3d->map.array_map[tmp_y / len - 1][tmp_x / len] == 1 &&
+		cub3d->map.array_map[tmp_y / len][tmp_x / len] == 1)) 
+		{
+
+		printf("isWall : len : %d\n y : %d, x : %d\n", len, tmp_y, tmp_x);
 		return (1);
+		}
 	return (0);
 }
 
@@ -43,11 +49,12 @@ void	draw_ray(t_cub3d *cub3d)
 	angle = cub3d->user.degree;
 	max_angle = angle + 30;
 
-	while(angle <= max_angle)
-	{
-		draw_one_ray(cub3d, angle);
-		draw_one_ray(cub3d, angle - 30);
-		angle += 5;
-	}
+	// while(angle <= max_angle)
+	// {
+	// 	draw_one_ray(cub3d, angle);
+	// 	draw_one_ray(cub3d, angle - 30);
+	// 	angle += 5;
+	// }
+	draw_one_ray(cub3d, angle);
 }
 

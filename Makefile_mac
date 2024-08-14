@@ -30,8 +30,8 @@ LIBFT := $(LIBFT_DIR)/libft.a
 MAP = map.c map_utils.c map_color.c map_texture.c
 TMP = tmp.c
 VALIDATION = validation.c validation_field.c validation_field_utils.c
-DRAW = draw_map.c
-KEY = key_hook.c
+DRAW = draw_map.c draw_minimap.c ray.c ray_quad.c ray_utils.c draw_utils.c
+KEY = key_hook.c key_move.c
 
 SRCS := error.c main.c free.c $(MAP) $(KEY) $(VALIDATION) $(TMP) $(DRAW)
 OBJS := $(SRCS:.c=.o)
