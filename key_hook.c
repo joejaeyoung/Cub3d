@@ -5,27 +5,24 @@
 
 void	rotate(int key, t_cub3d *cub3d)
 {
+	double	old_x;
+	double	old_y;
+	double	theta;
+	double 	degree;
+
 	if (key == LEFT_VIEW)
-	{	printf("LEFT view\n");
-		// if (cub3d->user.direct == NORTH)
-		// 	cub3d->user.direct = WEST;
-		// else
-		// 	cub3d->user.direct += 1;
-		cub3d->user.degree += 1;
-		if (cub3d->user.degree >= 360)
-			cub3d->user.degree = 0;
-	}
-	if (key == RIGHT_VIEW)
-	{	printf("Right view\n");
-		// if (cub3d->user.direct == WEST)
-		// 	cub3d->user.direct = NORTH;
-		// else
-		// 	cub3d->user.direct -= 1;
-		cub3d->user.degree -= 1;
-		if (cub3d->user.degree <= 0)
-			cub3d->user.degree = 360;
-	}
-	printf("rotate : %d\n", cub3d->user.degree);
+		degree = -1;
+	else
+		degree = 1;
+	old_x = cub3d -> user.dx;
+	old_y = cub3d -> user.dy;
+	theta = (double) degree * M_PI / 180;
+	cub3d -> user.dx = old_x * cos(theta) - old_y * sin(theta);
+	cub3d -> user.dy = old_x * sin(theta) + old_y * cos(theta);
+	old_x = cub3d -> user.v_dx;
+	old_y = cub3d -> user.v_dy;
+	cub3d -> user.v_dx = old_x * cos(theta) - old_y * sin(theta);
+	cub3d -> user.v_dy = old_x * sin(theta) + old_y * cos(theta);
 }
 
 // void	zoom(int key, t_cub3d *cub3d)

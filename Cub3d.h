@@ -6,7 +6,7 @@
 /*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/13 01:38:36 by joojeon          ###   ########.fr       */
+/*   Updated: 2024/08/15 16:10:59 by joojeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define RAY_RANGE (PI / 3.0)
 # define RAY_COUNT 121
 
-// # include "./minilibx-linux/mlx.h"
-# include "./minilibx_opengl_20191021/mlx.h"
+# include "./minilibx-linux/mlx.h"
+//# include "./minilibx_opengl_20191021/mlx.h"
 # include "libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
@@ -78,6 +78,10 @@ typedef struct s_map {
 typedef struct s_user {
 	double			x;
 	double			y;
+	double			dx;
+	double			dy;
+	double			v_dx;
+	double			v_dy;
 	int			degree; //north = 90, east = 0, south = 270, west = 180;
 	t_direction	direct;
 }	t_user;
