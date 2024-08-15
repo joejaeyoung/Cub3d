@@ -1,8 +1,6 @@
 #include "Cub3d.h"
 #include "Key.h"
 
-
-
 void	rotate(int key, t_cub3d *cub3d)
 {
 	double	old_x;
@@ -24,22 +22,6 @@ void	rotate(int key, t_cub3d *cub3d)
 	cub3d -> user.v_dx = old_x * cos(theta) - old_y * sin(theta);
 	cub3d -> user.v_dy = old_x * sin(theta) + old_y * cos(theta);
 }
-
-// void	zoom(int key, t_cub3d *cub3d)
-// {
-// 	if (key == ZOOM_IN)
-// 		cub3d->zoom += 1;
-// 	if (key == ZOOM_OUT && cub3d->zoom > 1)
-// 		cub3d->zoom -= 1;
-// }
-
-// void	elevate(int key, t_cub3d *cub3d)
-// {
-// 	if (key == INCR_Z)
-// 		cub3d->z_incr += 0.05;
-// 	else
-// 		cub3d->z_incr -= 0.05;
-// }
 
 int	exit_program(void *f)
 {

@@ -31,7 +31,7 @@ TMP = tmp.c
 VALIDATION = validation.c validation_field.c validation_field_utils.c
 DRAW = draw_map.c draw_minimap.c draw_utils.c
 KEY = key_hook.c key_move.c
-RAY = ray.c ray_utils.c ray_quad.c
+RAY = ray.c ray_utils.c
 
 SRCS := error.c main.c free.c $(MAP) $(KEY) $(VALIDATION) $(TMP) $(DRAW) $(RAY)
 OBJS := $(SRCS:.c=.o)
