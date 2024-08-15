@@ -6,7 +6,7 @@
 /*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/15 16:10:59 by joojeon          ###   ########.fr       */
+/*   Updated: 2024/08/15 18:45:13 by joojeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	print_array_map(t_cub3d *cub3d);
 
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);
-int		is_wall(t_cub3d *cub3d, double x, double y);
 
 /* ray_utils.c */
 int		get_angle(t_direction d);
@@ -109,18 +108,11 @@ int		deg2rad(int degrees);
 int		rad2deg(int radians);
 void	coordi_ray_point(t_cub3d *cub3d, double *x, double *y);
 
-/* ray_quad.c */
-void	one_quadrants(t_cub3d *cub3d, int angle);
-void	two_quadrants(t_cub3d *cub3d, int angle);
-void	three_quadrants(t_cub3d *cub3d, int angle);
-void	four_quadrants(t_cub3d *cub3d, int angle);
-void	slope_verti_hori(t_cub3d *cub3d, int angle);
-
 /* draw_map.c */
 void	make_it_3d(t_cub3d *cub3d);
 
 /* draw_minimap.c */
-int	draw_minimap(t_cub3d *cub3d);
+int		draw_minimap(t_cub3d *cub3d);
 
 /* draw_utils.c */
 void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color);
