@@ -9,9 +9,9 @@ void	rotate(int key, t_cub3d *cub3d)
 	double 	degree;
 
 	if (key == LEFT_VIEW)
-		degree = -1;
-	else
 		degree = 1;
+	else
+		degree = -1;
 	old_x = cub3d -> user.dx;
 	old_y = cub3d -> user.dy;
 	theta = deg2rad(degree);
