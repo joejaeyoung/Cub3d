@@ -6,7 +6,7 @@
 /*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/17 14:05:54 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/17 17:10:41 by jajo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define PI 3.141592
 # define RAY_RANGE (PI / 3.0)
 # define RAY_COUNT 121
+# define texWidth 64
+# define texHeight 64
 
 # include "./minilibx-linux/mlx.h"
 //# include "./minilibx_opengl_20191021/mlx.h"
@@ -47,11 +49,22 @@ typedef struct s_img {
 	int		endian;
 }	t_img;
 
+typedef struct s_tmptex {
+	void	*img;
+	int		*data;
+	int		width;
+	int		height;
+	int		pixel_bits;
+	int		line_bytes;
+	int		endian;
+}	t_tmptex;
+
 typedef struct s_texture {
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
+	char	*text_path;
+	int		*texture;
+	void	*ptr;
+	int		width;
+	int		height;
 }	t_texture;
 
 typedef struct s_color {
@@ -62,7 +75,7 @@ typedef struct s_color {
 }	t_color;
 
 typedef struct s_map {
-	t_texture	texture;
+	t_texture	texture[4];
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_field		*field;
@@ -98,6 +111,9 @@ typedef struct s_cub3d {
 /* tmp.c */
 void	print_field(t_field *field);
 void	print_array_map(t_cub3d *cub3d);
+
+/* 3d.c */
+void	ver_line(t_cub3d *cub3d, int x, int y1, int y2, int color, int degree);
 
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);

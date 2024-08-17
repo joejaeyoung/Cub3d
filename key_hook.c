@@ -56,7 +56,8 @@ int	handle_key(int key, t_cub3d *cub3d)
 	cub3d->img->img = mlx_new_image(cub3d->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!cub3d->img->img)
 		error(8);
-	draw_minimap(cub3d);
+	//draw_minimap(cub3d);
+	draw_ray(cub3d);
 	mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img->img, 0, 0);
 	return (0);
 }

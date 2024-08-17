@@ -7,18 +7,18 @@ void	free_map(t_cub3d *cub3d)
 
 void	free_texture(t_cub3d *cub3d)
 {
-	if (cub3d->map.texture.north_texture)
-		free(cub3d->map.texture.north_texture);
-	if (cub3d->map.texture.south_texture)
-		free(cub3d->map.texture.south_texture);
-	if (cub3d->map.texture.west_texture)
-		free(cub3d->map.texture.west_texture);
-	if (cub3d->map.texture.east_texture)
-		free(cub3d->map.texture.east_texture);
-	cub3d->map.texture.north_texture = NULL;
-	cub3d->map.texture.south_texture = NULL;
-	cub3d->map.texture.west_texture = NULL;
-	cub3d->map.texture.east_texture = NULL;
+	// if (cub3d->map.texture.north_texture)
+	// 	free(cub3d->map.texture.north_texture);
+	// if (cub3d->map.texture.south_texture)
+	// 	free(cub3d->map.texture.south_texture);
+	// if (cub3d->map.texture.west_texture)
+	// 	free(cub3d->map.texture.west_texture);
+	// if (cub3d->map.texture.east_texture)
+	// 	free(cub3d->map.texture.east_texture);
+	// cub3d->map.texture.north_texture = NULL;
+	// cub3d->map.texture.south_texture = NULL;
+	// cub3d->map.texture.west_texture = NULL;
+	// cub3d->map.texture.east_texture = NULL;
 }
 
 void	free_second_char_arr(char **str)
