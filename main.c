@@ -14,10 +14,6 @@ int	main(int argc, char *argv[])
 	} 
 	else
 	{
-		cub3d.user.dx = 0;
-		cub3d.user.dy = -1;
-		cub3d.user.v_dx = 1;
-		cub3d.user.v_dy = 0;
 		//printf("!!!!!!!!!!!!!!!!!!!!!!!!!11\n");
 		print_array_map(&cub3d);
 		make_it_3d(&cub3d);

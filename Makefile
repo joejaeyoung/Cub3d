@@ -26,7 +26,7 @@ INC_DIR := .
 LIBFT_DIR := ./libft
 LIBFT := $(LIBFT_DIR)/libft.a
 
-MAP = map.c map_utils.c map_color.c map_texture.c
+MAP = map.c map_utils.c map_color.c map_texture.c map_user.c
 TMP = tmp.c
 VALIDATION = validation.c validation_field.c validation_field_utils.c
 DRAW = draw_map.c draw_minimap.c draw_utils.c

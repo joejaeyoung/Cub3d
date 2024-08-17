@@ -16,5 +16,7 @@ void	error(int error_num)
 		ft_putendl_fd("Error\nPlayer is not one", STDERR_FILENO);
 	else if (error_num == 8)
 		ft_putendl_fd("Error\nMlx error", STDERR_FILENO);
+	else if (error_num == 9)
+		ft_putendl_fd("Error\n,Player direction is wrong", STDERR_FILENO);
 	exit(error_num);
 }

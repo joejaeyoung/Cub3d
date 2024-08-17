@@ -14,7 +14,7 @@ void	rotate(int key, t_cub3d *cub3d)
 		degree = 1;
 	old_x = cub3d -> user.dx;
 	old_y = cub3d -> user.dy;
-	theta = (double) degree * M_PI / 180;
+	theta = deg2rad(degree);
 	cub3d -> user.dx = old_x * cos(theta) - old_y * sin(theta);
 	cub3d -> user.dy = old_x * sin(theta) + old_y * cos(theta);
 	old_x = cub3d -> user.v_dx;

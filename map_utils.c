@@ -54,3 +54,16 @@ void	make_field_array(t_cub3d *cub3d)
 		tmp = tmp -> next;
 	}
 }
+
+void	get_tile_len(t_cub3d *cub3d)
+{
+	int	tile_width;
+	int	tile_height;
+
+	tile_width = (WINDOW_WIDTH) / cub3d->map.max_width;
+	tile_height = (WINDOW_HEIGHT) / cub3d->map.map_height;
+	if (tile_width < tile_height)
+		cub3d->map.tile_len = tile_width;
+	else
+		cub3d->map.tile_len = tile_height;
+}

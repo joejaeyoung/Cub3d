@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/15 18:45:13 by joojeon          ###   ########.fr       */
+/*   Updated: 2024/08/17 14:05:54 by jajo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,14 @@ void	print_array_map(t_cub3d *cub3d);
 
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);
+double	get_height_ratio(t_cub3d *cub3d, int i);
+double	get_distance(t_cub3d *cub3d, int i);
 
 /* ray_utils.c */
-int		get_angle(t_direction d);
-int		deg2rad(int degrees);
+double	deg2rad(int degree);
 int		rad2deg(int radians);
 void	coordi_ray_point(t_cub3d *cub3d, double *x, double *y);
+int		is_correct_ray_coordi(t_cub3d *cub3d, int i);
 
 /* draw_map.c */
 void	make_it_3d(t_cub3d *cub3d);
@@ -135,10 +137,14 @@ void	free_second_char_arr(char **str);
 /* map.c */
 void	parse_map(t_cub3d *cub3d, char *filename);
 
+/* map_user.c */
+void	get_user_direction(t_cub3d *cub3d, char c);
+
 /* map_utils.c */
 void	save_max_line_num(t_cub3d *cub3d);
 void	make_field_rectangle(t_cub3d *cub3d);
 void	make_field_array(t_cub3d *cub3d);
+void	get_tile_len(t_cub3d *cub3d);
 
 /* map_color.c */
 int		parse_map_color(t_cub3d *cub3d, char *str);
@@ -151,10 +157,10 @@ void	error(int error_num);
 
 /* validation.c */
 void	is_valid_input(int argc, char *argv[]);
-int		is_valid_player(t_cub3d *cub3d);
 
 /* validation_field.c */
 int		is_valid_field(t_cub3d *cub3d);
+int		is_valid_player(t_cub3d *cub3d);
 
 /* validation_field_utils.c */
 int		check_prev_field(t_field *prev_field, int idx);
