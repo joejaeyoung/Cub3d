@@ -6,7 +6,7 @@ void	fill_image(t_cub3d *cub3d)
 	&cub3d->img->line_bytes, &cub3d->img->endian);
 	if (!cub3d->img->addr)
 		error(4);
-	//draw_minimap(cub3d);	
+	draw_minimap(cub3d);	
 	draw_ray(cub3d);
 }
 

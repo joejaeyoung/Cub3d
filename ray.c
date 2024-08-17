@@ -19,11 +19,10 @@ double get_height_ratio(t_cub3d *cub3d, int i)
 	double	distance;
 
 	distance = get_distance(cub3d, i);
-	//printf("distance = %lf\n" , get_distance(cub3d, i));
 	return (WINDOW_HEIGHT / distance);
 }
 
-void	rotate_dir_vector(t_cub3d *cub3d, int degree)
+void	rotate_dir_vector(t_cub3d *cub3d, double degree, int x)
 {
 	double	theta;
 	double	old_x;
@@ -39,16 +38,10 @@ void	rotate_dir_vector(t_cub3d *cub3d, int degree)
 	while (1)
 	{
 		if (is_correct_ray_coordi(cub3d, i))
-		{
-			my_mlx_pixel_put(cub3d, (cub3d -> user.x * cub3d -> map.tile_len + cub3d -> user.dx * i) , \
-			(cub3d -> user.y * cub3d -> map.tile_len + cub3d -> user.dy * i), 0xff0000);
 			i++;
-		}
 		else
 		{
-			//printf("height = %lf\n" , get_height_ratio(cub3d, i));
-			ver_line(cub3d, (cub3d -> user.x * cub3d -> map.tile_len + cub3d -> user.dx * i) , \
-			(cub3d -> user.y * cub3d -> map.tile_len + cub3d -> user.dy * i), get_height_ratio(cub3d, i), 0xffffff, degree);
+			ver_line(cub3d, x, get_height_ratio(cub3d, i),  0xff0000);
 			break ;
 		}
 	}
@@ -56,18 +49,21 @@ void	rotate_dir_vector(t_cub3d *cub3d, int degree)
 	cub3d -> user.dy = old_y;
 }
 
-void	shoot_ray(t_cub3d *cub3d, int degree)
+void	shoot_ray(t_cub3d *cub3d, double degree)
 {
-	int	i;
+	double	original_degree;
+	double	step;
+	int		x;
 
-	i = degree;
-	printf("========\n");
-	while (i >= -degree)
+	x = 0;
+	step = 66 / (double) WINDOW_WIDTH;
+	original_degree = degree;
+	while (degree >= -original_degree)
 	{
-		rotate_dir_vector(cub3d, i);
-		i--;
+		rotate_dir_vector(cub3d, degree, x);
+		degree -= step;
+		x++;
 	}
-	printf("========\n");
 }
 
 void	draw_ray(t_cub3d *cub3d)
