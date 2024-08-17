@@ -13,6 +13,22 @@ int	*load_image_malloc(t_cub3d *cub3d, t_tmptex *img, int dir)
 		(printf("%p\n", img->img), error(8));
 	cub3d->map.texture[dir].width = img->width;
 	cub3d->map.texture[dir].height = img->height;
+
+	img->data = (int *)mlx_get_data_addr(img->img, &img->pixel_bits, &img->line_bytes, &img->endian);
+	if (!img->data)
+		error(8);
+	result = (int *)malloc(sizeof(int) * (img->height * img->width));
+	if (!result)
+		error(4);
+	y = -1;
+	while(++y < img->height)
+	{
+		x = -1;
+		while(++x < img->width)
+			result[img->width * y + x] = img->data[img->width * y + x];
+	}
+	mlx_destroy_image(cub3d->mlx, img->img);
+	return (result);
 }	
 
 int	parse_map_texture_north(t_cub3d *cub3d, char *str)
