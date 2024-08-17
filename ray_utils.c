@@ -1,8 +1,8 @@
 #include "Cub3d.h"
 
-double	deg2rad(int degree)
+double	deg2rad(double degree)
 {
-	return (degree * (M_PI / 180));
+	return (double)(degree * (M_PI / 180));
 }
 
 int	rad2deg(int radians)

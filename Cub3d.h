@@ -6,7 +6,7 @@
 /*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/17 19:17:01 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/17 20:04:28 by jajo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 # define FAIL 1
 # define SUCCESS 0
-# define WINDOW_WIDTH 1000
+# define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 # define PI 3.141592
 # define RAY_RANGE (PI / 3.0)
@@ -115,7 +115,7 @@ void	print_field(t_field *field);
 void	print_array_map(t_cub3d *cub3d);
 
 /* 3d.c */
-void	ver_line(t_cub3d *cub3d, int x, int y1, int y2, int color, int degree);
+void	ver_line(t_cub3d *cub3d, int x, double height, int color);
 
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);
@@ -123,7 +123,7 @@ double	get_height_ratio(t_cub3d *cub3d, int i);
 double	get_distance(t_cub3d *cub3d, int i);
 
 /* ray_utils.c */
-double	deg2rad(int degree);
+double	deg2rad(double degree);
 int		rad2deg(int radians);
 void	coordi_ray_point(t_cub3d *cub3d, double *x, double *y);
 int		is_correct_ray_coordi(t_cub3d *cub3d, int i);
