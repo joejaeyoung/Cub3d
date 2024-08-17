@@ -19,7 +19,7 @@ double get_height_ratio(t_cub3d *cub3d, int i)
 	double	distance;
 
 	distance = get_distance(cub3d, i);
-	printf("distance = %lf\n" , get_distance(cub3d, i));
+	//printf("distance = %lf\n" , get_distance(cub3d, i));
 	return (WINDOW_HEIGHT / distance);
 }
 
@@ -46,7 +46,9 @@ void	rotate_dir_vector(t_cub3d *cub3d, int degree)
 		}
 		else
 		{
-			printf("height = %lf\n" , get_height_ratio(cub3d, i));
+			//printf("height = %lf\n" , get_height_ratio(cub3d, i));
+			ver_line(cub3d, (cub3d -> user.x * cub3d -> map.tile_len + cub3d -> user.dx * i) , \
+			(cub3d -> user.y * cub3d -> map.tile_len + cub3d -> user.dy * i), get_height_ratio(cub3d, i), 0xffffff, degree);
 			break ;
 		}
 	}

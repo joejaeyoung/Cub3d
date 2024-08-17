@@ -26,6 +26,7 @@ INC_DIR := .
 LIBFT_DIR := ./libft
 LIBFT := $(LIBFT_DIR)/libft.a
 
+3D = 3d.c
 MAP = map.c map_utils.c map_color.c map_texture.c map_user.c
 TMP = tmp.c
 VALIDATION = validation.c validation_field.c validation_field_utils.c
@@ -33,7 +34,7 @@ DRAW = draw_map.c draw_minimap.c draw_utils.c
 KEY = key_hook.c key_move.c
 RAY = ray.c ray_utils.c
 
-SRCS := error.c main.c free.c $(MAP) $(KEY) $(VALIDATION) $(TMP) $(DRAW) $(RAY)
+SRCS := error.c main.c free.c $(MAP) $(KEY) $(VALIDATION) $(TMP) $(DRAW) $(RAY) $(3D)
 OBJS := $(SRCS:.c=.o)
 
 .PHONY : all start clean fclean re
