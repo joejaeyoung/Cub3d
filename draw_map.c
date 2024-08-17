@@ -25,7 +25,7 @@ void	make_it_3d(t_cub3d *cub3d)
 
 	img.addr = NULL;
 	cub3d->map.zoom = ((WINDOW_WIDTH / cub3d->map.max_width) / 3);
-	init_window(cub3d);
+
 	img.img = mlx_new_image(cub3d->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!img.img)
 		error(4);

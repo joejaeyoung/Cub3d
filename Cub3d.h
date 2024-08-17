@@ -6,7 +6,7 @@
 /*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/17 17:10:41 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/17 19:17:01 by jajo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ typedef struct s_cub3d {
 	void	*win;
 }	t_cub3d;
 
+
+void	init_window(t_cub3d *cub3d);
 /* tmp.c */
 void	print_field(t_field *field);
 void	print_array_map(t_cub3d *cub3d);

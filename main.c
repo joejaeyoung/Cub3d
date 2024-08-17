@@ -6,6 +6,7 @@ int	main(int argc, char *argv[])
 
 	is_valid_input(argc, argv);
 	cub3d.map.field = NULL;
+	init_window(&cub3d);
 	parse_map(&cub3d, argv[1]);
 	if (is_valid_field(&cub3d) == FAIL || cub3d.map.field == NULL || is_valid_player(&cub3d))\
 	{
