@@ -1,33 +1,18 @@
 #include "Cub3d.h"
+#include <stdio.h>
 
 int	*load_image_malloc(t_cub3d *cub3d, t_tmptex *img, int dir)
 {
-	// int	x;
-	// int	y;
-	// int	*result;
+	int	x;
+	int	y;
+	int	*result;
+	void *tmp_img;
 
-	// img->img= mlx_xpm_file_to_image(cub3d->mlx, \
-	// 	cub3d->map.texture[dir].text_path, &img->width, &img->height);
-	// if (!img->img)
-	// 	error(8);
-	// cub3d->map.texture[dir].width = img->width;
-	// cub3d->map.texture[dir].height = img->height;
-
-	// img->data = (int *) mlx_get_data_addr(img->img, &img->pixel_bits, &img->line_bytes, &img->endian);
-	// if (!img->data)
-	// 	error(8);
-	// result = (int *)malloc(sizeof(int) * (img->width * img->height));
-	// if (!result)
-	// 	error(4);
-	// y = -1;
-	// while(++y < img->height)
-	// {
-	// 	x = -1;
-	// 	while(++x < img->width)
-	// 		result[img->width * y + x] = img->data[img->width * y + x];
-	// }
-	// mlx_destroy_image(cub3d->mlx, img->img);
-	// return (result);
+	img->img = mlx_xpm_file_to_image(cub3d->mlx, "./textures/wall.xpm", &img->width, &img->height);
+	if (!img->img)
+		(printf("%p\n", img->img), error(8));
+	cub3d->map.texture[dir].width = img->width;
+	cub3d->map.texture[dir].height = img->height;
 }	
 
 int	parse_map_texture_north(t_cub3d *cub3d, char *str)
