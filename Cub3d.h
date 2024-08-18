@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
+/*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/17 20:05:08 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/18 19:20:36 by joojeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,12 @@ void	ver_line(t_cub3d *cub3d, int x, double height, int color);
 
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);
-double	get_height_ratio(t_cub3d *cub3d, int i);
+double	get_height_ratio(t_cub3d *cub3d, int i, int x);
 double	get_distance(t_cub3d *cub3d, int i);
 
 /* ray_utils.c */
 double	deg2rad(double degree);
-int		rad2deg(int radians);
+double	rad2deg(double radians);
 void	coordi_ray_point(t_cub3d *cub3d, double *x, double *y);
 int		is_correct_ray_coordi(t_cub3d *cub3d, int i);
 
