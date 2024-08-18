@@ -2,8 +2,8 @@
 
 void	ver_line(t_cub3d *cub3d, int x, double height, int color, int wall_dir)
 {
-	double	y1;
-	double	y2;
+	int	y1;
+	int	y2;
 
 	y1 = WINDOW_HEIGHT / 2 - height * 5;
 	y2 = WINDOW_HEIGHT / 2 + height * 5;

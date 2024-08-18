@@ -147,7 +147,7 @@ void	rotate_dir_vector(t_cub3d *cub3d, double degree, int x)
 		else
 		{
 			wall_dir = get_face_wall_direction(cub3d, i);
-			ver_line(cub3d, x, get_height_ratio(cub3d, i),  0xff0000, wall_dir);
+			ver_line(cub3d, x, get_height_ratio(cub3d, i, x),  0xff0000, wall_dir);
 			break ;
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
+/*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/18 20:25:45 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/18 20:33:26 by joojeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	print_array_map(t_cub3d *cub3d);
 
 /* 3d.c */
 void	ver_line(t_cub3d *cub3d, int x, double height, int color, int wall_dir);
-
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);
 double	get_height_ratio(t_cub3d *cub3d, int i, int x);
