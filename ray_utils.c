@@ -5,9 +5,9 @@ double	deg2rad(double degree)
 	return (double)(degree * (M_PI / 180));
 }
 
-int	rad2deg(int radians)
+double	rad2deg(double radians)
 {
-	return (radians * (180 / PI));
+	return (radians * (180 / M_PI));
 }
 
 void	coordi_ray_point(t_cub3d *cub3d, double *x, double *y)
