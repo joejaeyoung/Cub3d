@@ -16,7 +16,7 @@ int	main(int argc, char *argv[])
 	else
 	{
 		//printf("!!!!!!!!!!!!!!!!!!!!!!!!!11\n");
-		print_array_map(&cub3d);
+		//print_array_map(&cub3d);
 		make_it_3d(&cub3d);
 	}
 	free_map(&cub3d);

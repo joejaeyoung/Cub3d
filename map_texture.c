@@ -8,7 +8,7 @@ int	*load_image_malloc(t_cub3d *cub3d, t_tmptex *img, int dir)
 	int	*result;
 	void *tmp_img;
 
-	img->img = mlx_xpm_file_to_image(cub3d->mlx, "./textures/wall.xpm", &img->width, &img->height);
+	img->img = mlx_xpm_file_to_image(cub3d->mlx, "./textures/greystone.xpm", &img->width, &img->height);
 	if (!img->img)
 		(printf("%p\n", img->img), error(8));
 	cub3d->map.texture[dir].width = img->width;
@@ -28,6 +28,7 @@ int	*load_image_malloc(t_cub3d *cub3d, t_tmptex *img, int dir)
 			result[img->width * y + x] = img->data[img->width * y + x];
 	}
 	mlx_destroy_image(cub3d->mlx, img->img);
+	printf("%d : image load 완료\n", dir);
 	return (result);
 }	
 
