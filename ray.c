@@ -61,12 +61,78 @@ double get_height_ratio(t_cub3d *cub3d, int i, int x)
 	return (double)WINDOW_HEIGHT / prep_distance;
 }
 
+double abs_double(double a)
+{
+	if (a < 0)
+		return -1 * a;
+	return a;
+}
+int	get_face_wall_direction(t_cub3d *cub3d, int i)
+{
+	double	x;
+	double	y;
+	double	tmp_x;
+	double	tmp_y;
+
+	int	hori;
+	double user_x;
+	double user_y;
+	double wall_x;
+	double wall_y;
+
+	int xx;
+	int yy;
+	//hori == 0 -> x 축에 맞은 ray
+
+	hori = -1;
+	x = (double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i) / (double)cub3d->map.tile_len + 1;
+	y = (double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i) / (double)cub3d->map.tile_len + 1;
+	tmp_x = abs_double((double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i) - (double)cub3d->map.tile_len * x);
+	tmp_y = abs_double((double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i) - (double)cub3d->map.tile_len * y);
+	xx = round(tmp_x);
+	yy = round(tmp_y);
+
+	if (xx > yy) {
+		hori = 1;
+		printf("북남\n");
+	}
+	else
+		hori = 0;
+
+	// x = (double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i) / (double)cub3d->map.tile_len;
+	// y = (double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i) / (double)cub3d->map.tile_len;
+	// tmp_x = (double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i) - (double)cub3d->map.tile_len * x;
+	// tmp_y = (double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i) - (double)cub3d->map.tile_len * y;
+	
+	user_x = (double)(cub3d->user.x * cub3d->map.tile_len);
+	user_y = (double)(cub3d->user.y * cub3d->map.tile_len);
+
+	wall_x = (double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i);
+	wall_y = (double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i);
+
+	// if (abs_double(tmp_x) > abs_double(tmp_y)) {
+	// 	hori = 1;
+	// 	printf("남북\n");
+	// }
+	// else
+	// 	hori = 0;
+
+	if (hori == 0 && (user_x - wall_x) > 0)
+		return (1);
+	else if (hori == 0 && (user_x - wall_x) < 0)
+		return (0);
+	else if (hori == 1 && (user_y - wall_y) > 0)
+		return (3);
+	return (2);
+}
+
 void	rotate_dir_vector(t_cub3d *cub3d, double degree, int x)
 {
 	double	theta;
 	double	old_x;
 	double	old_y;
 	int		i;
+	int		wall_dir;
 
 	i = 0;
 	old_x = cub3d -> user.dx;
@@ -80,7 +146,8 @@ void	rotate_dir_vector(t_cub3d *cub3d, double degree, int x)
 			i++;
 		else
 		{
-			ver_line(cub3d, x, get_height_ratio(cub3d, i, x),  0xff0000);
+			wall_dir = get_face_wall_direction(cub3d, i);
+			ver_line(cub3d, x, get_height_ratio(cub3d, i),  0xff0000, wall_dir);
 			break ;
 		}
 	}

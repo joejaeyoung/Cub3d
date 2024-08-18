@@ -6,10 +6,10 @@ void	fill_square(t_cub3d *cub3d, int x, int y, int color)
 	int	j;
 
 	j = -1;
-	while(++j < (int)(1) * cub3d->map.tile_len)
+	while(++j < (int)(1) * cub3d->map.tile_len / 10)
 	{
 		i = -1;
-		while(++i < (int)(1) * cub3d->map.tile_len)
+		while(++i < (int)(1) * cub3d->map.tile_len / 10)
 			cub3d->img->addr[(int)(1 * WINDOW_WIDTH) * (y + j) + (x + i)] = color;
 	}
 }
@@ -43,26 +43,26 @@ int	draw_minimap(t_cub3d *cub3d)
 	tile_len = cub3d->map.tile_len;
 	field = cub3d->map.field;
 	count_h = -1;
-	// while ((field))
-	// {
-	// 	count_h++;
-	// 	count_w = -1;
-	// 	while(++count_w < field->line_num)
-	// 	{
-	// 		if (field->line[count_w].value == 1)
-	// 			fill_square(cub3d, (int)(1 * tile_len * count_w), (int)(1 * tile_len * count_h), 0xd2b48c);
-	// 		else if (field->line[count_w].value == -1)
-	// 			fill_square(cub3d, (int)(1 * tile_len * count_w), (int)(1 * tile_len * count_h), 0x000000);
-	// 		else if (field->line[count_w].value == 2)
-	// 		{
-	// 			fill_square(cub3d, (int)(1 * tile_len * count_w), (int)(1 * tile_len * count_h), 0xffffff);
-	// 			draw_player(cub3d);
-	// 		}
-	// 		else
-	// 			fill_square(cub3d, (int)(1 * tile_len * count_w), (int)(1 * tile_len * count_h), 0xffffff);
-	// 	}
-	// 	field = field -> next;
-	// }
+	while ((field))
+	{
+		count_h++;
+		count_w = -1;
+		while(++count_w < field->line_num)
+		{
+			if (field->line[count_w].value == 1)
+				fill_square(cub3d, (int)(1 * tile_len * count_w), (int)(1 * tile_len * count_h), 0xd2b48c);
+			else if (field->line[count_w].value == -1)
+				fill_square(cub3d, (int)(1 * tile_len * count_w), (int)(1 * tile_len * count_h), 0x000000);
+			else if (field->line[count_w].value == 2)
+			{
+				fill_square(cub3d, (int)(1 * tile_len * count_w), (int)(1 * tile_len * count_h), 0xffffff);
+				draw_player(cub3d);
+			}
+			else
+				fill_square(cub3d, (int)(1 * tile_len * count_w), (int)(1 * tile_len * count_h), 0xffffff);
+		}
+		field = field -> next;
+	}
 
 	draw_ray(cub3d);
 	return (0);

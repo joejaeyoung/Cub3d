@@ -17,8 +17,8 @@ void	texture_test(t_cub3d *cub3d)
 	for (int y = 0; y < WINDOW_HEIGHT; y++)
 		for(int x = 0; x < WINDOW_WIDTH; x++) {
 			//printf("%d : %d\n", cub3d->img->addr[64 * y + x], cub3d->map.texture[0].texture[64*y+x]);
-			cub3d->img->addr[WINDOW_WIDTH * y + x] = cub3d->map.texture[0].texture[64 * y + x];
-			//cub3d->img->addr[WINDOW_WIDTH * y + x] = find_color(cub3d, y, x);
+			//cub3d->img->addr[WINDOW_WIDTH * y + x] = cub3d->map.texture[0].texture[64 * y + x];
+			cub3d->img->addr[WINDOW_WIDTH * y + x] = find_color(cub3d, y, x);
 		}
 	//mlx_put_image_to_window(cub3d->mlx, cub3d->win, cub3d->img->img, 0, 0);
 }
@@ -29,9 +29,10 @@ void	fill_image(t_cub3d *cub3d)
 	&cub3d->img->line_bytes, &cub3d->img->endian);
 	if (!cub3d->img->addr)
 		error(4);
-	draw_minimap(cub3d);	
+		
 	draw_ray(cub3d);
-	texture_test(cub3d);
+	draw_minimap(cub3d);
+	//texture_test(cub3d);
 }
 
 void	init_window(t_cub3d *cub3d)
