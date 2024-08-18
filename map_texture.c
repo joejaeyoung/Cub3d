@@ -8,7 +8,8 @@ int	*load_image_malloc(t_cub3d *cub3d, t_tmptex *img, int dir)
 	int	*result;
 	void *tmp_img;
 
-	img->img = mlx_xpm_file_to_image(cub3d->mlx, "./textures/greystone.xpm", &img->width, &img->height);
+	printf("dir : %d, path : %s\n", dir, cub3d->map.texture[dir].text_path);
+	img->img = mlx_xpm_file_to_image(cub3d->mlx, cub3d->map.texture[dir].text_path, &img->width, &img->height);
 	if (!img->img)
 		(printf("%p\n", img->img), error(8));
 	cub3d->map.texture[dir].width = img->width;
