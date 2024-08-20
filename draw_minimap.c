@@ -6,11 +6,16 @@ void	fill_square(t_cub3d *cub3d, int x, int y, int color)
 	int	j;
 
 	j = -1;
-	while(++j < (int)(1) * cub3d->map.tile_len / 10)
+	while(++j < (int)(1) * cub3d->map.tile_len)
 	{
 		i = -1;
-		while(++i < (int)(1) * cub3d->map.tile_len / 10)
-			cub3d->img->addr[(int)(1 * WINDOW_WIDTH) * (y + j) + (x + i)] = color;
+		while(++i < (int)(1) * cub3d->map.tile_len) {
+
+			if (i == 0 || j == 0 || i == cub3d->map.tile_len || j == cub3d->map.tile_len)
+				cub3d->img->addr[(int)(1 * WINDOW_WIDTH) * (y + j) + (x + i)] = 0x000000;
+			else
+				cub3d->img->addr[(int)(1 * WINDOW_WIDTH) * (y + j) + (x + i)] = color;
+		}
 	}
 }
 
@@ -64,6 +69,6 @@ int	draw_minimap(t_cub3d *cub3d)
 		field = field -> next;
 	}
 
-	draw_ray(cub3d);
+	draw_ray_2d(cub3d);
 	return (0);
 }

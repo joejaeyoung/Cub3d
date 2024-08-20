@@ -43,10 +43,10 @@ double	get_perp_distance(double euclidean_distance, int x, t_cub3d *cub3d)
 		//printf("내적 : %lf\n", (r_dx * v_dx + r_dy * v_dy));
 	}
 	//theta = rad2deg(theta);
-	printf("theta = %lf\n", theta);
+	//printf("theta = %lf\n", theta);
 	//theta = 180 - theta;
 	//theta = deg2rad(theta);
-	return (sin(theta) * euclidean_distance);
+	return (sin(theta) * (euclidean_distance));
 }
 
 double get_height_ratio(t_cub3d *cub3d, int i, int x)
@@ -56,8 +56,8 @@ double get_height_ratio(t_cub3d *cub3d, int i, int x)
 	// return (projected_wall_height);
 	double	euclidean_distance = get_distance(cub3d, i);
 	double	prep_distance = get_perp_distance(euclidean_distance, x, cub3d);
-	printf("eucl = %lf\n", euclidean_distance);
-	printf("perp = %lf\n", prep_distance);
+	//printf("eucl = %lf\n", euclidean_distance);
+	//printf("perp = %lf\n", prep_distance);
 	return (double)WINDOW_HEIGHT / prep_distance;
 }
 
@@ -67,63 +67,65 @@ double abs_double(double a)
 		return -1 * a;
 	return a;
 }
-int	get_face_wall_direction(t_cub3d *cub3d, int i)
+
+int abs_int(int a)
 {
-	double	x;
-	double	y;
-	double	tmp_x;
-	double	tmp_y;
+	if (a < 0)
+		return -1 * a;
+	return a;
+}
 
-	int	hori;
-	double user_x;
-	double user_y;
-	double wall_x;
-	double wall_y;
+int	get_face_wall_direction(t_cub3d *cub3d, int dir, int i)
+{
+	double u_x;
+	double u_y;
+	double w_x;
+	double w_y;
+	double d_x;
+	double d_y;
 
-	int xx;
-	int yy;
-	//hori == 0 -> x 축에 맞은 ray
+	int r_x;
+	int r_y;
 
-	hori = -1;
-	x = (double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i) / (double)cub3d->map.tile_len + 1;
-	y = (double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i) / (double)cub3d->map.tile_len + 1;
-	tmp_x = abs_double((double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i) - (double)cub3d->map.tile_len * x);
-	tmp_y = abs_double((double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i) - (double)cub3d->map.tile_len * y);
-	xx = round(tmp_x);
-	yy = round(tmp_y);
+	int hori;
+	u_x = cub3d->user.x * cub3d->map.tile_len;
+	u_y = cub3d->user.y * cub3d->map.tile_len;
+	w_x = u_x + cub3d->user.dx * i;
+	w_y = u_y + cub3d->user.dy * i;
+	r_x = (int)(w_x * 1000)%24;
+	r_y = (int)(w_y * 1000)%24;
 
-	if (xx > yy) {
-		hori = 1;
-		printf("북남\n");
-	}
-	else
-		hori = 0;
 
-	// x = (double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i) / (double)cub3d->map.tile_len;
-	// y = (double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i) / (double)cub3d->map.tile_len;
-	// tmp_x = (double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i) - (double)cub3d->map.tile_len * x;
-	// tmp_y = (double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i) - (double)cub3d->map.tile_len * y;
+	//printf("ux : %lf, uy : %lf\n", u_x, u_y);
+	//printf("w_x : %lf, w_y : %lf\n", w_x, w_y);
 	
-	user_x = (double)(cub3d->user.x * cub3d->map.tile_len);
-	user_y = (double)(cub3d->user.y * cub3d->map.tile_len);
-
-	wall_x = (double)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i);
-	wall_y = (double)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i);
-
-	// if (abs_double(tmp_x) > abs_double(tmp_y)) {
-	// 	hori = 1;
-	// 	printf("남북\n");
-	// }
-	// else
-	// 	hori = 0;
-
-	if (hori == 0 && (user_x - wall_x) > 0)
-		return (1);
-	else if (hori == 0 && (user_x - wall_x) < 0)
-		return (0);
-	else if (hori == 1 && (user_y - wall_y) > 0)
+	//printf("dx : %d, dy : %d\n", r_x, r_y);
+	
+	//printf("rx : %d, ry : %d\n", r_x, r_y);
+	printf("dir :%d\n", dir);
+	//printf("tile len : %d\n", cub3d->map.tile_len);
+	if (r_x < r_y) {
+		hori =0;
+		//printf("동서\n");
+	}
+	else {
+		hori = 1;
+		//printf("남북\n");
+	}
+	//west
+	if (hori == 0 && (u_x - w_x) > 0) {
+		return 1;
+	}
+	//east
+	else if (hori == 0 && (u_x - w_x) < 0) {
+		return 0;
+	}
+	//south
+	else if (hori == 1 && (u_y - w_y) > 0) {
 		return (3);
+	}
 	return (2);
+
 }
 
 void	rotate_dir_vector(t_cub3d *cub3d, double degree, int x)
@@ -131,23 +133,27 @@ void	rotate_dir_vector(t_cub3d *cub3d, double degree, int x)
 	double	theta;
 	double	old_x;
 	double	old_y;
-	int		i;
+	double		i;
 	int		wall_dir;
 
-	i = 0;
+	i = 0.0;
 	old_x = cub3d -> user.dx;
 	old_y = cub3d -> user.dy;
 	theta = deg2rad(degree);
 	cub3d -> user.dx = old_x * cos(theta) - old_y * sin(theta);
 	cub3d -> user.dy = old_x * sin(theta) + old_y * cos(theta);
+
+	double ray_dir_x = cub3d->user.dx;
+	double ray_dir_y = cub3d->user.dy;
 	while (1)
 	{
-		if (is_correct_ray_coordi(cub3d, i))
-			i++;
+		int tmp = is_correct_ray_coordi(cub3d, i);
+		if (tmp == 1)
+			i += 0.1;
 		else
 		{
-			wall_dir = get_face_wall_direction(cub3d, i);
-			ver_line(cub3d, x, get_height_ratio(cub3d, i),  0xff0000, wall_dir);
+			wall_dir = get_face_wall_direction(cub3d, tmp, i);
+			ver_line(cub3d, x, get_height_ratio(cub3d, i, x),  0xff0000, wall_dir);
 			break ;
 		}
 	}

@@ -3,14 +3,14 @@
 void	user_north(t_cub3d *cub3d)
 {
 	cub3d->user.dx = 0;
-	cub3d->user.dy = -1;
+	cub3d->user.dy = -0.01;
 	cub3d->user.v_dx = 1;
 	cub3d->user.v_dy = 0;
 }
 
 void	user_west(t_cub3d *cub3d)
 {
-	cub3d->user.dx = -1;
+	cub3d->user.dx = -0.01;
 	cub3d->user.dy = 0;
 	cub3d->user.v_dx = 0;
 	cub3d->user.v_dy = -1;
@@ -19,17 +19,17 @@ void	user_west(t_cub3d *cub3d)
 void	user_south(t_cub3d *cub3d)
 {
 	cub3d->user.dx = 0;
-	cub3d->user.dy = -1;
-	cub3d->user.v_dx = -1;
+	cub3d->user.dy = -0.01;
+	cub3d->user.v_dx = -0.01;
 	cub3d->user.v_dy = 0;
 }
 
 void	user_east(t_cub3d *cub3d)
 {
-	cub3d->user.dx = 1;
+	cub3d->user.dx = 0.01;
 	cub3d->user.dy = 0;
 	cub3d->user.v_dx = 0;
-	cub3d->user.v_dy = 1;
+	cub3d->user.v_dy = 0.01;
 }
 
 void	get_user_direction(t_cub3d *cub3d, char c)

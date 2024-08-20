@@ -6,7 +6,7 @@
 /*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/18 20:25:45 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/20 21:54:32 by jajo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define RAY_COUNT 121
 # define texWidth 64
 # define texHeight 64
+# define FALSE 0
+# define TRUE 1
 
 # include "./minilibx-linux/mlx.h"
 //# include "./minilibx_opengl_20191021/mlx.h"
@@ -33,6 +35,29 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 15
 # endif
+
+typedef struct s_ray {
+	double	ray_angle;
+	double	wall_hitX;
+	double	wall_hitY;
+	double	distance;
+	int		wasHit_vertical;
+	int		isRay_facingDown;
+	int		isRay_facingUp;
+	int		isRay_facingRight;
+	int		isRay_facingLeft;
+}	t_ray;
+
+typedef struct s_dpable_ray {
+	double	x_intercept;
+	double	y_intercept;
+	double	x_step;
+	double	y_step;
+	int		found_wall_hit;
+	double	wall_hitX;
+	double	wall_hitY;
+	double	distance;
+}	t_dpable_ray;
 
 typedef enum s_direction {
 	WEST,
@@ -103,10 +128,14 @@ typedef struct s_cub3d {
 	t_map	map;
 	t_img	*img;
 	t_user	user;
+	t_ray	ray;
 	/* mlx variable */
 	void	*mlx;
 	void	*win;
 }	t_cub3d;
+
+/* ray_2d.c */
+void	draw_ray_2d(t_cub3d *cub3d);
 
 
 void	init_window(t_cub3d *cub3d);
@@ -116,6 +145,7 @@ void	print_array_map(t_cub3d *cub3d);
 
 /* 3d.c */
 void	ver_line(t_cub3d *cub3d, int x, double height, int color, int wall_dir);
+void	ver_line_2d(t_cub3d *cub3d, int x, int color, int wall_dir);
 
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);
@@ -133,6 +163,8 @@ void	make_it_3d(t_cub3d *cub3d);
 
 /* draw_minimap.c */
 int		draw_minimap(t_cub3d *cub3d);
+void	fill_square(t_cub3d *cub3d, int x, int y, int color);
+void	draw_player(t_cub3d *cub3d);
 
 /* draw_utils.c */
 void	my_mlx_pixel_put(t_cub3d *cub3d, int x, int y, int color);
