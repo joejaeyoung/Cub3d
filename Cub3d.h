@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jajo < jajo@student.42gyeongsan.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/21 17:34:26 by joojeon          ###   ########.fr       */
+/*   Updated: 2024/08/21 17:47:53 by jajo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,8 +168,8 @@ void	print_field(t_field *field);
 void	print_array_map(t_cub3d *cub3d);
 
 /* 3d.c */
-void	ver_line(t_cub3d *cub3d, int x, double height, int color, int wall_dir);
 void	ver_line_2d(t_cub3d *cub3d, int x, int color, int wall_dir);
+void	ver_line(t_cub3d *cub3d, int x, double y_s, double y_e, int wall_dir);
 
 /* ray.c */
 void	draw_ray(t_cub3d *cub3d);
