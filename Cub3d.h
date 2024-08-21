@@ -6,7 +6,7 @@
 /*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/21 14:47:08 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/21 15:03:40 by jajo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,28 @@ typedef struct s_ray {
 typedef struct s_dpable_ray {
 	double	ray_dir_x;
 	double	ray_dir_y;
+	
 	double	x_intercept;
 	double	y_intercept;
-	double	x_step;
-	double	y_step;
 	int		found_wall_hit;
-	int		side;
+
 	double	wall_hitX;
 	double	wall_hitY;
 	double	distance;
-	
+
+	int		side;
+	int		stepX;
+	int		stepY;
+	int		mapX;
+	int		mapY;
 	double	sdx;
 	double	ddx;
 	double	sdy;
 	double	ddy;
 	double	perpWallDist;
-	int	lineHeight;
-	int	verLineDrawStart;
-	int	verLineDrawEnd;
+	int		lineHeight;
+	int		verLineDrawStart;
+	int		verLineDrawEnd;
 }	t_dpable_ray;
 
 typedef enum s_direction {
