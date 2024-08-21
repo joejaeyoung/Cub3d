@@ -114,13 +114,107 @@ int	get_face_wall_direction(t_cub3d *cub3d, int dir, int i)
 
 }
 
+void	find_wall_3d(t_cub3d *cub3d, t_dpable_ray *ray)
+{
+	int tile = cub3d->map.tile_len;
+
+	double posX = cub3d->user.x;
+	double posY = cub3d->user.y;
+
+	//array 인덱스 기준으로 찍힘
+	int mapX = (int)cub3d->user.x;
+	int mapY = (int)cub3d->user.y;
+	//printf("User : %d, %d\n", mapX, mapY);
+
+
+	double sideDistX;
+	double sideDistY;
+
+	double deltaDistX = (ray->ray_dir_y == 0) ? (double)0 : ((ray->ray_dir_x == 0) ? 1 : fabs(1 / ray->ray_dir_x));
+	double deltaDistY = (ray->ray_dir_x == 0) ? (double)0 : ((ray->ray_dir_y == 0) ? 1 : fabs(1 / ray->ray_dir_y));
+	double perpWallDist;
+
+	//printf("r_x : %lf, r_y : %lf, d_x : %lf, d_y : %lf\n", ray_dir_x, ray_dir_y, deltaDistX, deltaDistY);
+
+	int stepX;
+	int stepY;
+
+	int hit = 0;
+	int side;
+
+	if (ray->ray_dir_x < 0)
+	{
+		stepX = -1;
+		sideDistX = (posX - mapX) * deltaDistX;
+	} else {
+		stepX = 1;
+		sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+	}
+
+	if (ray->ray_dir_y < 0)
+	{
+		stepY = -1;
+		sideDistY = (posY - mapY) * deltaDistY;
+	} else {
+		stepY = 1;
+		sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+	}
+	while(hit == 0)
+	{
+		my_mlx_pixel_put(cub3d, mapX * cub3d->map.tile_len, mapY * cub3d->map.tile_len, 0xff0000);
+		if (sideDistX < sideDistY)
+		{
+			sideDistX += deltaDistX;
+			mapX += stepX;
+			//printf("x기준 : side : %lf, delta : %lf, map : %d, step :%d \n", sideDistX, deltaDistX, mapX, stepX);
+			//x줄
+			side = 0;
+		} else {
+			//printf("y기준 : side : %lf, delta : %lf, map : %d, step :%d \n", sideDistY, deltaDistY, mapY, stepY);
+			sideDistY += deltaDistY;
+			mapY += stepY;
+			//y면 가로줄
+			side = 1;
+		}
+	
+		//Check if ray has hit a wall
+		if (cub3d->map.array_map[mapY][mapX] == 1)
+		{
+			ray->wall_hitX = mapX;
+			ray->wall_hitY = mapY;
+			ray->side = side;
+			hit = 1;
+			printf("벽 부딪힘 : %d : %d : %d\n", mapX , mapY , side);
+			for (int row = -(4) / 2; row <= (4) / 2; row++)
+			{
+				for (int col = -(4) / 2; col <= (4) / 2; col++)
+				{
+					cub3d->img->addr[(int)(1 * (WINDOW_WIDTH * (mapY * tile + row))) + (mapX * tile+ col)] = 0xff0000;
+				}
+			}
+		}
+	}
+	if (side == 0)
+		ray->perpWallDist = (sideDistX - deltaDistX);
+	else
+		ray->perpWallDist  = (sideDistY - deltaDistY);
+	
+	ray->lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
+	ray->verLineDrawStart = -ray->lineHeight / 2 + WINDOW_HEIGHT / 2;
+	if (ray->verLineDrawStart < 0)
+		ray->verLineDrawStart = 0;
+	ray->verLineDrawEnd = ray->lineHeight / 2 + WINDOW_HEIGHT / 2;
+	if (ray->verLineDrawEnd >= WINDOW_HEIGHT)
+		ray->verLineDrawEnd = WINDOW_HEIGHT - 1;
+}
+
 void	rotate_dir_vector(t_cub3d *cub3d, double degree, int x)
 {
 	double	theta;
 	double	old_x;
 	double	old_y;
 	double		i;
-	int		wall_dir;
+	t_dpable_ray	ray;
 
 	i = 0.0;
 	old_x = cub3d -> user.dx;
@@ -129,20 +223,16 @@ void	rotate_dir_vector(t_cub3d *cub3d, double degree, int x)
 	cub3d -> user.dx = old_x * cos(theta) - old_y * sin(theta);
 	cub3d -> user.dy = old_x * sin(theta) + old_y * cos(theta);
 
-	double ray_dir_x = cub3d->user.dx;
-	double ray_dir_y = cub3d->user.dy;
-	while (1)
-	{
-		int tmp = is_correct_ray_coordi(cub3d, i);
-		if (tmp == 1)
-			i += 0.1;
-		else
-		{
-			wall_dir = get_face_wall_direction(cub3d, tmp, i);
-			ver_line(cub3d, x, get_height_ratio(cub3d, i, x),  0xff0000, wall_dir);
-			break ;
-		}
-	}
+	ray.ray_dir_x = cub3d->user.dx;
+	ray.ray_dir_y= cub3d->user.dy;
+
+	find_wall_3d(cub3d, &ray);
+	get_height_ratio(cub3d, &ray);
+	printf("%lf, %lf, %lf\n", ray.wall_hitX, ray.wall_hitY, ray.side);
+	// wall_dir = get_face_wall_direction(cub3d, , i);
+	// ver_line(cub3d, x, get_height_ratio(cub3d, i, x),  0xff0000, wall_dir);
+
+
 	cub3d -> user.dx = old_x;
 	cub3d -> user.dy = old_y;
 }

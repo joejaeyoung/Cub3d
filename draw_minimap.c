@@ -69,6 +69,6 @@ int	draw_minimap(t_cub3d *cub3d)
 		field = field -> next;
 	}
 
-	draw_ray_2d(cub3d);
+	draw_ray(cub3d);
 	return (0);
 }

@@ -54,13 +54,13 @@ int	find_wall(t_cub3d *cub3d, double ray_dir_x, double ray_dir_y)
 			mapX += stepX;
 			//printf("x기준 : side : %lf, delta : %lf, map : %d, step :%d \n", sideDistX, deltaDistX, mapX, stepX);
 			//x줄
-			side = 0;
+			side = 1;
 		} else {
 			//printf("y기준 : side : %lf, delta : %lf, map : %d, step :%d \n", sideDistY, deltaDistY, mapY, stepY);
 			sideDistY += deltaDistY;
 			mapY += stepY;
 			//y면 가로줄
-			side = 1;
+			side = 0;
 		}
 	
 		//Check if ray has hit a wall
@@ -77,6 +77,9 @@ int	find_wall(t_cub3d *cub3d, double ray_dir_x, double ray_dir_y)
 			}
 		}
 	}
+
+
+
 }
 
 int		is_wall_or_inside_map(t_cub3d *cub3d, int i)
