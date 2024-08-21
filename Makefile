@@ -33,8 +33,9 @@ VALIDATION = validation.c validation_field.c validation_field_utils.c
 DRAW = draw_map.c draw_minimap.c draw_utils.c
 KEY = key_hook.c key_move.c
 RAY = ray.c ray_utils.c
+MINIMAP = ray_2d.c
 
-SRCS := error.c main.c free.c $(MAP) $(KEY) $(VALIDATION) $(TMP) $(DRAW) $(RAY) $(3D)
+SRCS := error.c main.c free.c $(MAP) $(KEY) $(VALIDATION) $(TMP) $(DRAW) $(RAY) $(3D) $(MINIMAP)
 OBJS := $(SRCS:.c=.o)
 
 .PHONY : all start clean fclean re

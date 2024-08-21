@@ -10,8 +10,8 @@ void	move_up(t_cub3d *cub3d)
 	ny = (int)(cub3d -> user.y + cub3d -> user.dy * 0.1 / cub3d -> map.tile_len);
 	if (cub3d -> map.array_map[ny][nx] != 1)
 	{
-		cub3d -> user.x += cub3d -> user.dx * 0.1;
-		cub3d -> user.y += cub3d -> user.dy * 0.1;
+		cub3d -> user.x += cub3d -> user.dx * 0.5;
+		cub3d -> user.y += cub3d -> user.dy * 0.5;
 	}
 	
 }
@@ -25,8 +25,8 @@ void move_down(t_cub3d *cub3d)
 	ny = (int) (cub3d -> user.y - cub3d -> user.dy * 0.1 / cub3d -> map.tile_len);
 	if (cub3d -> map.array_map[ny][nx] != 1)
 	{
-		cub3d -> user.x -= cub3d -> user.dx * 0.1;
-		cub3d -> user.y -= cub3d -> user.dy * 0.1;
+		cub3d -> user.x -= cub3d -> user.dx * 0.5;
+		cub3d -> user.y -= cub3d -> user.dy * 0.5;
 	}
 }
 
@@ -40,8 +40,8 @@ void move_right(t_cub3d *cub3d)
 	ny = (int) (cub3d -> user.y + cub3d -> user.v_dy * 0.1 / cub3d -> map.tile_len);
 	if (cub3d -> map.array_map[ny][nx] != 1)
 	{
-		cub3d -> user.x -= cub3d -> user.v_dx * 0.1;
-		cub3d -> user.y -= cub3d -> user.v_dy * 0.1;
+		cub3d -> user.x += cub3d -> user.v_dx * 0.1;
+		cub3d -> user.y += cub3d -> user.v_dy * 0.1;
 	}
 }
 
@@ -54,8 +54,8 @@ void move_left(t_cub3d *cub3d)
 	ny = (int) (cub3d -> user.y - cub3d -> user.v_dy * 0.1 / cub3d -> map.tile_len);
 	if (cub3d -> map.array_map[ny][nx] != 1)
 	{
-		cub3d -> user.x += cub3d -> user.v_dx * 0.1;
-		cub3d -> user.y += cub3d -> user.v_dy * 0.1;
+		cub3d -> user.x -= cub3d -> user.v_dx * 0.1;
+		cub3d -> user.y -= cub3d -> user.v_dy * 0.1;
 	}
 }
 

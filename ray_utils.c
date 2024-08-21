@@ -28,7 +28,13 @@ int		is_correct_ray_coordi(t_cub3d *cub3d, int i)
 		cub3d -> user.dy * i) / cub3d -> map.tile_len] \
 		[(int) (cub3d -> user.x * cub3d -> map.tile_len + cub3d -> user.dx * i) \
 		/ cub3d -> map.tile_len] != 1
-		)
-		return (1);
+		) {
+			return (1);
+		}
+		//x축이 2, y축이 3
+	if ((int)(cub3d->user.x * cub3d->map.tile_len + cub3d->user.dx * i) % cub3d->map.tile_len == 0)
+		return (2);
+	else if ((int)(cub3d->user.y * cub3d->map.tile_len + cub3d->user.dy * i) % cub3d->map.tile_len == 0)
+		return (3);
 	return (0);
 }
