@@ -6,7 +6,7 @@
 /*   By: joojeon <joojeon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:43:46 by jajo              #+#    #+#             */
-/*   Updated: 2024/08/21 15:03:40 by jajo             ###   ########.fr       */
+/*   Updated: 2024/08/21 17:34:26 by joojeon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,12 @@ typedef struct s_dpable_ray {
 	double	distance;
 
 	int		side;
-	int		stepX;
-	int		stepY;
-	int		mapX;
-	int		mapY;
+	int		step_x;
+	int		step_y;
+	int		map_x;
+	int		map_y;
+	double	pos_x;
+	double	pos_y;
 	double	sdx;
 	double	ddx;
 	double	sdy;
@@ -150,6 +152,12 @@ typedef struct s_cub3d {
 	void	*win;
 }	t_cub3d;
 
+
+/* ray_utils2.c*/
+void	init_ray(t_cub3d *cub3d, t_dpable_ray *ray, int x);
+void	set_side_dist(t_dpable_ray *ray);
+void	set_delta_dist(t_dpable_ray *ray);
+
 /* ray_2d.c */
 void	draw_ray_2d(t_cub3d *cub3d);
 
@@ -232,5 +240,7 @@ int		is_valid_player(t_cub3d *cub3d);
 int		check_prev_field(t_field *prev_field, int idx);
 int		check_next_field(t_field *next_field, int idx);
 int		check_current_field(t_field *field, int idx);
+
+
 
 #endif
