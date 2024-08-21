@@ -103,6 +103,23 @@ void	dda(t_cub3d *cub3d, t_dpable_ray *ray)
 	}
 }
 
+void	draw_ceil(t_cub3d *cub3d, int x, t_dpable_ray *ray)
+{
+	int y;
+
+	y = 0;
+	while (y < ray -> verLineDrawStart)
+		my_mlx_pixel_put(cub3d, x, y++, cub3d -> map.ceiling_color.color);
+}
+void	draw_floor(t_cub3d *cub3d, int x, t_dpable_ray *ray)
+{
+	int y;
+
+	y = ray -> verLineDrawEnd;
+	while (y < WINDOW_HEIGHT)
+		my_mlx_pixel_put(cub3d, x, y++, cub3d -> map.floor_color.color);
+}
+
 void	find_wall_3d(t_cub3d *cub3d, t_dpable_ray *ray, int x)
 {
 	init_ray(cub3d, ray , x);
@@ -118,18 +135,9 @@ void	find_wall_3d(t_cub3d *cub3d, t_dpable_ray *ray, int x)
 	ray->verLineDrawEnd = ray->lineHeight / 2 + WINDOW_HEIGHT / 2;
 	if (ray->verLineDrawEnd >= WINDOW_HEIGHT)
 		ray->verLineDrawEnd = WINDOW_HEIGHT - 1;
-	// while (ray -> verLineDrawStart <= ray -> verLineDrawEnd)
-	// {
-	// 	int	color;
-
-	// 	if (ray -> side)
-	// 		color = 0xff0000;
-	// 	else
-	// 		color = 0xff00ff;
-	// 	my_mlx_pixel_put(cub3d, x , ray -> verLineDrawStart, color);
-	// 	ray -> verLineDrawStart++;
-	// }
+	draw_ceil(cub3d, x, ray);
 	ver_line(cub3d, x, ray->verLineDrawStart, ray->verLineDrawEnd, get_wall_dir(cub3d, ray));
+	draw_floor(cub3d, x, ray);
 }
 
 // void	rotate_dir_vector(t_cub3d *cub3d, int x)
