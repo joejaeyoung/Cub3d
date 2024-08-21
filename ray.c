@@ -61,20 +61,6 @@ double get_height_ratio(t_cub3d *cub3d, int i, int x)
 	return (double)WINDOW_HEIGHT / prep_distance;
 }
 
-double abs_double(double a)
-{
-	if (a < 0)
-		return -1 * a;
-	return a;
-}
-
-int abs_int(int a)
-{
-	if (a < 0)
-		return -1 * a;
-	return a;
-}
-
 int	get_face_wall_direction(t_cub3d *cub3d, int dir, int i)
 {
 	double u_x;
@@ -170,14 +156,14 @@ void	shoot_ray(t_cub3d *cub3d, double degree)
 	x = 0;
 	step = 66 / (double) WINDOW_WIDTH;
 	original_degree = degree;
-	printf("===start===\n");
-	while (degree >= -original_degree)
-	{
-		rotate_dir_vector(cub3d, degree, x);
-		degree -= step;
-		x++;
-	}
-	printf("===end===\n");
+	// printf("===start===\n");
+	// while (degree >= -original_degree)
+	// {
+		rotate_dir_vector(cub3d, 0, x);
+	// 	degree -= step;
+	// 	x++;
+	// }
+	// printf("===end===\n");
 }
 
 void	draw_ray(t_cub3d *cub3d)
