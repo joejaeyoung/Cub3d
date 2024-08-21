@@ -31,7 +31,7 @@ void	fill_image(t_cub3d *cub3d)
 		error(4);
 		
 	draw_ray(cub3d);
-	draw_minimap(cub3d);
+	// draw_minimap(cub3d);
 	//texture_test(cub3d);
 }
 
